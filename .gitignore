@@ -7,6 +7,9 @@ target/
 mvnw
 mvnw.cmd
 
+#ignore database files
+/data
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
