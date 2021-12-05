@@ -1,7 +1,6 @@
 package pl.bpiatek.marinemonitoring.ais.domain;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import pl.bpiatek.marinemonitoring.ais.api.token.AisTokenResponse;
 
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import java.util.Map;
 /**
  * Created by Bartosz Piatek on 29/11/2021
  */
-@Component
 @RequiredArgsConstructor
 class AisTokenProvider {
 

@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class VesselApiResponse {
 
   @JsonProperty("timeStamp")
@@ -40,6 +41,8 @@ public class VesselApiResponse {
   @JsonProperty("draught")
   Double draught;
 
+  @NoArgsConstructor
+  @AllArgsConstructor
   public static class Geometry {
     String type;
     @JsonProperty("coordinates")

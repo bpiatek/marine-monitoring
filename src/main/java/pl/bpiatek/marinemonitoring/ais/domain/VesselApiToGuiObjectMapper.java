@@ -1,14 +1,12 @@
 package pl.bpiatek.marinemonitoring.ais.domain;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import pl.bpiatek.marinemonitoring.ais.api.openposition.VesselApiResponse;
 import pl.bpiatek.marinemonitoring.ais.api.openposition.VesselGuiObject;
 
 /**
  * Created by Bartosz Piatek on 01/12/2021
  */
-@Component
 @RequiredArgsConstructor
 class VesselApiToGuiObjectMapper {
 

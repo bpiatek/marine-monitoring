@@ -14,7 +14,7 @@ import javax.persistence.*;
  * Created by Bartosz Piatek on 30/11/2021
  */
 @Entity
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor
 class AisToken {
 
