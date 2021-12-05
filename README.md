@@ -37,4 +37,10 @@ Enter city name in search box in the upper right corner and click SEARCH:
 
 It is of course possible to search for any city. The map will show that location and weather details will be displayed.
 
-![alt text](https://i.ibb.co/QJ2KcB9/Zrzut-ekranu-2021-12-5-o-18-18-45.png)
+![alt text](https://i.ibb.co/QJ2KcB9/Zrzut-ekranu-2021-12-5-o-18-18-45.png)  
+
+There is some error handling implemented.  
+
+![alt text](https://i.ibb.co/Tcws9jq/Zrzut-ekranu-2021-12-5-o-23-03-30.png)
+
+![alt text](https://i.ibb.co/Pc840fw/Zrzut-ekranu-2021-12-5-o-23-03-00.png)
