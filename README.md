@@ -27,8 +27,7 @@ Additionally there are some weather information provided for specified city as w
 
 It seems like API (barentswatch.no) proposed on the stream is providing information only about Norwegian coastal nad marine areas. 
 
-![alt text](https://i.ibb.co/Ssr65pF/Zrzut-ekranu-2021-12-5-o-17-54-11.png) 
-
+![alt text](https://i.ibb.co/ChYK2tr/Zrzut-ekranu-2021-12-5-o-18-15-28.png)  
 That means you would have to limit your searches to those cities.  
 Some examples: Kristiansand, Stavanger, Oslo, Tromso.  
 Enter city name in search box in the upper right corner and click SEARCH: 
