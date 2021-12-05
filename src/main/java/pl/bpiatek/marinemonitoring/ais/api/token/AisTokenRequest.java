@@ -1,4 +1,4 @@
-package pl.bpiatek.marinemonitoring.ais.api;
+package pl.bpiatek.marinemonitoring.ais.api.token;
 
 import lombok.Value;
 

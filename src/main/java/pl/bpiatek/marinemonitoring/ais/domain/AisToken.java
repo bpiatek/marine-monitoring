@@ -4,9 +4,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import pl.bpiatek.marinemonitoring.ais.api.AisTokenResponse;
+import pl.bpiatek.marinemonitoring.ais.api.token.AisTokenResponse;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -32,6 +31,7 @@ class AisToken {
   AisTokenResponse toResponse() {
     return AisTokenResponse.builder()
         .accessToken(this.accessToken)
+        .tokenType(this.tokenType)
         .build();
   }
 

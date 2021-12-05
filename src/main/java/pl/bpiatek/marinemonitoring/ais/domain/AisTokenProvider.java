@@ -1,9 +1,8 @@
 package pl.bpiatek.marinemonitoring.ais.domain;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.bpiatek.marinemonitoring.ais.api.AisTokenResponse;
+import pl.bpiatek.marinemonitoring.ais.api.token.AisTokenResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +10,12 @@ import java.util.Map;
 /**
  * Created by Bartosz Piatek on 29/11/2021
  */
-@Slf4j
 @Component
 @RequiredArgsConstructor
 class AisTokenProvider {
 
   private final AisProperties aisProperties;
-  private final AisFeignClient aisFeignClient;
+  private final AisTokenFeignClient aisTokenFeignClient;
 
   AisTokenResponse provideToken() {
     Map<String, String> params = new HashMap<>();
@@ -25,6 +23,6 @@ class AisTokenProvider {
     params.put("scope", "api");
     params.put("client_secret", aisProperties.getClientSecret());
     params.put("grant_type", aisProperties.getGrantType());
-    return aisFeignClient.getToken(params).getBody();
+    return aisTokenFeignClient.getToken(params).getBody();
   }
 }
