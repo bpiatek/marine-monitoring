@@ -18,15 +18,21 @@
     <div class="container-fluid">
         <a class="navbar-brand">Marine Monitoring</a>
         <form th:action="@{/}" class="d-flex">
-            <input class="form-control me-2" type="search" name="city" id="city" placeholder="Wpisz miasto" aria-label="Search">
+            <input class="form-control me-2" type="search" name="city" id="city" placeholder="Wpisz miasto"
+                   aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
 </nav>
-<h1 class="text-center" th:text="${city.getName()}"></h1>
-<p class="text-center">Temperatura: <strong>[(${weather.main.temp})]&deg;C</strong>   Ciśnienie: <strong>[(${weather.main.pressure})]hPa</strong>   Zachmurzenie: <strong>[(${weather.clouds.all})]%</strong></p>
-<div id="map"></div>
-
+<div class="alert alert-danger text-center" role="alert" th:if="${error == 'true'}" th:with="errorMsg=${errorMessage}">
+    <p class="errorMsg"><span th:text="${errorMsg} + ': ' + ${cityName}"></span></p>
+</div>
+<div th:if="${error == 'false'}">
+    <h1 class="text-center" th:text="${city.getName()}"></h1>
+    <p class="text-center">Temperatura: <strong>[(${weather.main.temp})]&deg;C</strong> Ciśnienie: <strong>[(${weather.main.pressure})]hPa</strong>
+        Zachmurzenie: <strong>[(${weather.clouds.all})]%</strong></p>
+    <div id="map"></div>
+</div>
 
 <!-- JAVASCRIPT -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -37,22 +43,24 @@
         crossorigin="anonymous"></script>
 <script th:inline="javascript">
     window.onload = function () {
-        var city = [[${city}]]
-        var map = L.map('map').setView([city.latitude, city.longitude],11);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        if ([[${error}]] === 'false') {
+            var city = [[${city}]]
+            var map = L.map('map').setView([city.latitude, city.longitude], 11);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-        var vessels = [[${vessels}]];
-        for ( i in vessels) {
-            new L.Marker(new L.latLng(vessels[i].latitude, vessels[i].longitude), {title:vessels[i].name})
-                .addTo(map)
-                .bindPopup("Nazwa: <strong>" + vessels[i].name + "</strong><br>" +
-                           "Kraj: " + vessels[i].country + "<br>" +
-                           "Cel: " + vessels[i].destination + "<br>" +
-                           "MMSI: " + vessels[i].maritimeMobileServiceIdentity + "<br>" +
-                           "Rodzaj statku: " + vessels[i].shipType)
-                .openPopup()
+            var vessels = [[${vessels}]];
+            for (i in vessels) {
+                new L.Marker(new L.latLng(vessels[i].latitude, vessels[i].longitude), {title: vessels[i].name})
+                    .addTo(map)
+                    .bindPopup("Nazwa: <strong>" + vessels[i].name + "</strong><br>" +
+                               "Kraj: " + vessels[i].country + "<br>" +
+                               "Cel: " + vessels[i].destination + "<br>" +
+                               "MMSI: " + vessels[i].maritimeMobileServiceIdentity + "<br>" +
+                               "Rodzaj statku: " + vessels[i].shipType)
+                    .openPopup()
+            }
         }
     };
 </script>

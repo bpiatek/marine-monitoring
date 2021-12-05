@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AisFacade {
 
-  @Value("${extend.area.by.n.degries}")
+  @Value("${extend.area.by.n.degrees}")
   private double extendArea;
   private final AisTokenProvider tokenProvider;
   private final AisTokenRepository aisTokenRepository;

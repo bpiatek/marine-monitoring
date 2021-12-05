@@ -27,18 +27,36 @@ class AppController {
 
   @GetMapping
   public String index(Model model, @RequestParam(defaultValue = "Trondheim") String city) {
-
     PositionstackCityResponse cityCoordinates = positionstackFacade.getCityCoordinates(city);
-    List<VesselGuiObject> vessels = aisFacade.getVesselsInArea(cityCoordinates);
-    OpenWeatherResponse weather = openWeatherFacade.getWeatherForCoordinates(
-        cityCoordinates.getLongitude(),
-        cityCoordinates.getLatitude()
-    );
+    if (cityCoordinates.getError() != null) {
+      prepareModelOnError(model, city, cityCoordinates.getError());
+    } else {
+      List<VesselGuiObject> vessels = aisFacade.getVesselsInArea(cityCoordinates);
+      OpenWeatherResponse weather = openWeatherFacade.getWeatherForCoordinates(
+          cityCoordinates.getLongitude(),
+          cityCoordinates.getLatitude()
+      );
+      prepareModelOnSuccess(model, vessels, cityCoordinates, weather);
+    }
 
+    return "index";
+  }
+
+  private void prepareModelOnError(Model model, String city, String errorMessage) {
+    model.addAttribute("errorMessage", errorMessage);
+    model.addAttribute("error", "true");
+    model.addAttribute("cityName", city);
+  }
+
+  private void prepareModelOnSuccess(
+      Model model,
+      List<VesselGuiObject> vessels,
+      PositionstackCityResponse cityCoordinates,
+      OpenWeatherResponse weather
+  ) {
+    model.addAttribute("error", "false");
     model.addAttribute("vessels", vessels);
     model.addAttribute("city", cityCoordinates);
     model.addAttribute("weather", weather);
-
-    return "index";
   }
 }

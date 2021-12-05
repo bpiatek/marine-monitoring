@@ -12,8 +12,9 @@ public class PositionstackCityResponse {
   String name;
   String country;
   String continent;
+  String error;
 
-  public static PositionstackCityResponse empty() {
-    return new PositionstackCityResponse(0.0, 0.0, "", "", "");
+  public static PositionstackCityResponse withError(String error) {
+    return new PositionstackCityResponse(0.0, 0.0, "", "", "", error);
   }
 }
